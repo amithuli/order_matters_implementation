@@ -7,7 +7,7 @@ import pytorch_lightning as pl
 
 
 
-def run_experiment(input_dim, embedding_size, seq_min_len, seq_max_len, num_samples, num_processing_steps, num_layers=1, max_epochs=300, batch_size=128):
+def run_experiment(input_dim, embedding_size, seq_min_len, seq_max_len, num_samples, num_processing_steps, num_layers=1, max_epochs=10000, batch_size=128):
     '''Running an experiment with following parameters'''
     train_set = IntegerSortDataset(num_samples=num_samples, high=input_dim, min_len=seq_min_len, max_len=seq_max_len, seed=1)
     train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True, num_workers=4, collate_fn=sparse_seq_collate_fn)
@@ -25,7 +25,7 @@ def run_experiment(input_dim, embedding_size, seq_min_len, seq_max_len, num_samp
 if name == '__main__':
     input_dim = 100
     embedding_size = 2
-    num_samples = 2000
+    num_samples = 5000
 
     runs_dict = [
         # N=5
